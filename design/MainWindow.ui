@@ -93,7 +93,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEditRowTotal"/>
+            <widget class="QLineEdit" name="lineEditRowTotal">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
