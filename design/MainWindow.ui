@@ -184,7 +184,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEditSection"/>
+               <widget class="QSpinBox" name="spinBoxSection"/>
               </item>
              </layout>
             </item>
@@ -214,7 +214,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEditVolunteer"/>
+               <widget class="QSpinBox" name="spinBoxVolunteer"/>
               </item>
              </layout>
             </item>
