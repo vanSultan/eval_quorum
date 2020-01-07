@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         self.tabEvalPlot.setObjectName("tabEvalPlot")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.tabEvalPlot)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.evalPlot = QtWidgets.QWidget(self.tabEvalPlot)
+        self.evalPlot = PlotWidget(self.tabEvalPlot)
         self.evalPlot.setObjectName("evalPlot")
         self.verticalLayout_4.addWidget(self.evalPlot)
         self.tabWidget.addTab(self.tabEvalPlot, "")
@@ -195,3 +195,4 @@ class Ui_MainWindow(object):
         self.labelVolunteer.setText(_translate("MainWindow", "ID волонтера:"))
         self.pushButtonEvalVolunteer.setText(_translate("MainWindow", "Оценить волонтера"))
         self.pushButtonEvalFrame.setText(_translate("MainWindow", "Оценить корпус"))
+from pyqtgraph import PlotWidget
