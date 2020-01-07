@@ -35,13 +35,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabEvalView">
+      <widget class="QWidget" name="tabEvalPlot">
        <attribute name="title">
         <string>Оценка</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QWidget" name="evalView" native="true"/>
+         <widget class="QWidget" name="evalPlot" native="true"/>
         </item>
        </layout>
       </widget>
