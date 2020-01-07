@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
 
+from table_model import TableModel
 from ui_main_widget import Ui_MainWindow
 
 
@@ -17,6 +18,9 @@ class MainView(QMainWindow):
         self.ui.pushButtonUpdateView.clicked.connect(self.click_update_table_view)
         self.ui.pushButtonEvalSection.clicked.connect(self.click_eval_section)
         self.ui.pushButtonEvalVolunteer.clicked.connect(self.click_eval_volunteer)
+
+        self.ui.tableView.setModel(TableModel(0, 0))
+        self.ui.tableView.horizontalHeader().setSectionResizeMode(1)  # Таблица заполняет все пространство
 
     def click_update_table_view(self):
         row_offset = int(self.ui.spinBoxRowOffset.text())
