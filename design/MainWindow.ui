@@ -19,7 +19,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="5,2">
+   <layout class="QHBoxLayout" name="hLayoutCentral" stretch="5,2">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
@@ -29,7 +29,7 @@
        <attribute name="title">
         <string>Таблица</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="vLayoutTable">
         <item>
          <widget class="QTableView" name="tableView"/>
         </item>
@@ -39,11 +39,7 @@
        <attribute name="title">
         <string>Оценка</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="PlotWidget" name="evalPlot" native="true"/>
-        </item>
-       </layout>
+       <layout class="QVBoxLayout" name="vLayoutEvalPlot"/>
       </widget>
      </widget>
     </item>
@@ -54,7 +50,7 @@
         <property name="title">
          <string>Настройка отображения данных:</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
+        <layout class="QVBoxLayout" name="vLayoutView">
          <item>
           <layout class="QHBoxLayout" name="hLayoutRowOffset" stretch="5,3">
            <item>
@@ -116,13 +112,13 @@
         <property name="title">
          <string>Оценка согласованности:</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
+        <layout class="QVBoxLayout" name="vLayoutEvaluation">
          <item>
           <widget class="QGroupBox" name="groupBoxPeriod">
            <property name="title">
             <string>Выбор периода оценки:</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <layout class="QVBoxLayout" name="vLayoutPeriod">
             <item>
              <layout class="QHBoxLayout" name="hLayoutBeginPeriod">
               <item>
@@ -177,7 +173,7 @@
            <property name="title">
             <string>Оценка абзаца:</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
+           <layout class="QVBoxLayout" name="vLayoutSection">
             <item>
              <layout class="QHBoxLayout" name="hLayoutSection" stretch="5,3">
               <item>
@@ -207,7 +203,7 @@
            <property name="title">
             <string>Оценка волонтера:</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_8">
+           <layout class="QVBoxLayout" name="vLayoutVolunteer">
             <item>
              <layout class="QHBoxLayout" name="hLayoutVolunteer" stretch="5,3">
               <item>
@@ -248,14 +244,6 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>PlotWidget</class>
-   <extends>QWidget</extends>
-   <header>pyqtgraph</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
