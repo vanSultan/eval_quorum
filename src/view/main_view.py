@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
 
+from eval_plot_view import EvalPlot
 from table_model import TableModel
 from ui_main_widget import Ui_MainWindow
 
@@ -19,8 +20,13 @@ class MainView(QMainWindow):
         self.ui.pushButtonEvalSection.clicked.connect(self.click_eval_section)
         self.ui.pushButtonEvalVolunteer.clicked.connect(self.click_eval_volunteer)
 
+        # Привязка отображения таблицы к ее модели
         self.ui.tableView.setModel(TableModel(0, 0))
         self.ui.tableView.horizontalHeader().setSectionResizeMode(1)  # Таблица заполняет все пространство
+
+        # Инициализация диграммы для оценки
+        self.evaPlotView = EvalPlot(parent=self.ui.tabEvalPlot)
+        self.ui.vLayoutEvalPlot.addWidget(self.evaPlotView)
 
     def click_update_table_view(self):
         row_offset = int(self.ui.spinBoxRowOffset.text())
