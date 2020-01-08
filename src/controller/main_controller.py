@@ -186,5 +186,5 @@ class MainController:
                 self.c_view.ui.statusbar.showMessage(f'VolSpan: left={total - current}; current={current}')
                 self.c_view.ui.statusbar.repaint()
 
-        conn.commit()
-        conn.close()
+        cursor.close()
+        Database().connection.commit()
