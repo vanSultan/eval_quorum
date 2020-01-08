@@ -61,7 +61,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBoxRowOffset"/>
+            <widget class="QSpinBox" name="spinBoxRowOffset">
+             <property name="maximum">
+              <number>999999</number>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -75,7 +79,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBoxRowCount"/>
+            <widget class="QSpinBox" name="spinBoxRowCount">
+             <property name="maximum">
+              <number>999999</number>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -133,6 +141,9 @@
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
                </widget>
               </item>
              </layout>
@@ -150,6 +161,9 @@
                <widget class="QSpinBox" name="spinBoxEndLimit">
                 <property name="enabled">
                  <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
                 </property>
                </widget>
               </item>
@@ -184,7 +198,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBoxSection"/>
+               <widget class="QSpinBox" name="spinBoxSection">
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -214,7 +232,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBoxVolunteer"/>
+               <widget class="QSpinBox" name="spinBoxVolunteer">
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
