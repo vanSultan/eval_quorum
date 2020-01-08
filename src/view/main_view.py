@@ -33,22 +33,22 @@ class MainView(QMainWindow):
         self.ui.spinBoxRowCount.setValue(50)
 
     def click_update_table_view(self):
-        row_offset = int(self.ui.spinBoxRowOffset.text())
-        row_count = int(self.ui.spinBoxRowCount.text())
+        row_offset = self.ui.spinBoxRowOffset.value()
+        row_count = self.ui.spinBoxRowCount.value()
 
         self.v_controller.update_table_view(row_offset, row_count)
 
     def click_eval_section(self):
-        begin_limit = int(self.ui.spinBoxBeginLimit.text())
-        end_limit = int(self.ui.spinBoxEndLimit.text())
-        id_section = int(self.ui.spinBoxSection.text())
+        begin_limit = self.ui.spinBoxBeginLimit.value()
+        end_limit = self.ui.spinBoxEndLimit.value()
+        id_section = self.ui.spinBoxSection.value()
 
         self.v_controller.eval_section(id_section, begin_limit, end_limit)
 
     def click_eval_volunteer(self):
-        begin_limit = int(self.ui.spinBoxBeginLimit.text())
-        end_limit = int(self.ui.spinBoxEndLimit.text())
-        id_volunteer = int(self.ui.spinBoxVolunteer.text())
+        begin_limit = self.ui.spinBoxBeginLimit.value()
+        end_limit = self.ui.spinBoxEndLimit.value()
+        id_volunteer = self.ui.spinBoxVolunteer.value()
 
         self.v_controller.eval_volunteer(id_volunteer, begin_limit, end_limit)
 
