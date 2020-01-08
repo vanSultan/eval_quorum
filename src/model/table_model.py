@@ -29,13 +29,13 @@ class TableModel(QAbstractTableModel):
         name = None
         if orientation == Qt.Horizontal:
             if section == 0:
-                name = 'idVolunteer'
+                name = 'idRecord'
             elif section == 1:
-                name = 'idSection'
+                name = 'idVolunteer'
             elif section == 2:
-                name = 'idSpan'
+                name = 'idSection'
             elif section == 3:
-                name = 'DateTimeInsert'
+                name = 'idSpan'
         elif orientation == Qt.Vertical:
             name = str(section)
 
