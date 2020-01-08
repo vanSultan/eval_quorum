@@ -37,6 +37,7 @@ class MainView(QMainWindow):
         row_count = self.ui.spinBoxRowCount.value()
 
         self.v_controller.update_table_view(row_offset, row_count)
+        # self.v_controller.load_data_from_csv()
 
     def click_eval_section(self):
         begin_limit = self.ui.spinBoxBeginLimit.value()
