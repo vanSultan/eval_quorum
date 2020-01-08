@@ -29,7 +29,7 @@ class TableModel(QAbstractTableModel):
         name = None
         if orientation == Qt.Horizontal:
             if section == 0:
-                name = 'idRecord'
+                name = 'idVolSpan'
             elif section == 1:
                 name = 'idVolunteer'
             elif section == 2:
