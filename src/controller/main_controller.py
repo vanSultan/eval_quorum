@@ -1,3 +1,5 @@
+from PyQt5.QtCore import Qt
+
 from main_view import MainView
 
 
@@ -6,10 +8,12 @@ class MainController:
         self.c_view = MainView(self)
         self.c_view.show()
 
-    def no_limit_change_state(self, state: int):
+    def update_limits(self, state: int, begin_index: int = None, end_index: int = None):
         """
-        Обработка установки/сброса флага выбора всего периода
-        :param state: Состояние флага
+        Обновление пределов корпуса
+        :param state: Состояние флага выбора всего корпуса
+        :param begin_index: начальный индекс выбранных границ
+        :param end_index: конечный индекс выбранных границ
         :return: None
         """
         # 0 - Qt::Unchecked, 2 - Qt::Checked
@@ -19,10 +23,23 @@ class MainController:
         self.c_view.ui.spinBoxBeginLimit.setEnabled(not state)
         self.c_view.ui.spinBoxEndLimit.setEnabled(not state)
 
-        if state:
-            table_model = self.c_view.ui.tableView.model()
-            begin_limit, end_limit = table_model.limits
+        table_model = self.c_view.ui.tableView.model()
 
+        begin_limit = end_limit = 0
+
+        if state:  # Если флаг установлен
+            begin_limit, end_limit = table_model.limits
+        elif begin_index and end_index:  # Если флаг не установлен и в таблицы выбраны пределы
+            begin_limit = int(table_model.data(table_model.index(begin_index, 0), Qt.DisplayRole))
+            if end_index == -1:
+                end_limit = self.c_view.ui.spinBoxEndLimit.value()
+            else:
+                end_limit = int(table_model.data(table_model.index(end_index, 0), Qt.DisplayRole))
+
+            if end_limit < begin_limit:
+                end_limit = begin_limit
+
+        if state or begin_index and end_index:
             self.c_view.ui.spinBoxBeginLimit.setValue(begin_limit)
             self.c_view.ui.spinBoxEndLimit.setValue(end_limit)
 
@@ -44,7 +61,7 @@ class MainController:
         self.c_view.ui.lineEditRowTotal.setText(str(table_model.row_total))
 
         # Обновляем границы, при условии, что прожат полного корпуса
-        self.no_limit_change_state(self.c_view.ui.checkBoxNoLimit.checkState())
+        self.update_limits(self.c_view.ui.checkBoxNoLimit.checkState())
 
         self.c_view.ui.statusbar.showMessage(f'Offset: {row_offset}\tCount: {row_count}')
 

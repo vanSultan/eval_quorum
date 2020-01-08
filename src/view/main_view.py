@@ -15,11 +15,12 @@ class MainView(QMainWindow):
         self.v_controller = controller
 
         # Привязка событий к функциям
-        self.ui.checkBoxNoLimit.stateChanged.connect(self.v_controller.no_limit_change_state)
+        self.ui.checkBoxNoLimit.stateChanged.connect(self.v_controller.update_limits)
         self.ui.pushButtonUpdateView.clicked.connect(self.click_update_table_view)
         self.ui.pushButtonEvalSection.clicked.connect(self.click_eval_section)
         self.ui.pushButtonEvalVolunteer.clicked.connect(self.click_eval_volunteer)
         self.ui.pushButtonEvalFrame.clicked.connect(self.click_eval_frame)
+        self.ui.tableView.clicked.connect(self.click_table_view)
 
         # Привязка отображения таблицы к ее модели
         self.ui.tableView.setModel(TableModel(0, 0))
@@ -54,7 +55,18 @@ class MainView(QMainWindow):
         self.v_controller.eval_volunteer(id_volunteer, begin_limit, end_limit)
 
     def click_eval_frame(self):
-        begin_limit = int(self.ui.spinBoxBeginLimit.text())
-        end_limit = int(self.ui.spinBoxEndLimit.text())
+        begin_limit = self.ui.spinBoxBeginLimit.value()
+        end_limit = self.ui.spinBoxEndLimit.value()
 
         self.v_controller.eval_frame(begin_limit, end_limit)
+
+    def click_table_view(self):
+        selected = self.ui.tableView.selectedIndexes()
+
+        begin_index = selected[0].row()
+        if len(selected) == 1:
+            end_index = -1
+        else:
+            end_index = selected[-1].row()
+
+        self.v_controller.update_limits(self.ui.checkBoxNoLimit.checkState(), begin_index, end_index)
