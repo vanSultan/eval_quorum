@@ -1,5 +1,3 @@
-import datetime
-
 from main_view import MainView
 
 
@@ -18,8 +16,8 @@ class MainController:
         state = False if state == 0 else True
 
         # Смена доступности изменения периода
-        self.c_view.ui.dateTimeBeginPeriod.setEnabled(not state)
-        self.c_view.ui.dateTimeEndPeriod.setEnabled(not state)
+        self.c_view.ui.spinBoxBeginLimit.setEnabled(not state)
+        self.c_view.ui.spinBoxEndLimit.setEnabled(not state)
 
     def update_table_view(self, row_offset: int, row_count: int):
         """
