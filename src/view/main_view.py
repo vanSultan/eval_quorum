@@ -29,6 +29,9 @@ class MainView(QMainWindow):
         self.evaPlotView = EvalPlot(parent=self.ui.tabEvalPlot)
         self.ui.vLayoutEvalPlot.addWidget(self.evaPlotView)
 
+        # Инициализация некоторых параметров
+        self.ui.spinBoxRowCount.setValue(50)
+
     def click_update_table_view(self):
         row_offset = int(self.ui.spinBoxRowOffset.text())
         row_count = int(self.ui.spinBoxRowCount.text())
