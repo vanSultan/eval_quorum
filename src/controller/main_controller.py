@@ -19,6 +19,13 @@ class MainController:
         self.c_view.ui.spinBoxBeginLimit.setEnabled(not state)
         self.c_view.ui.spinBoxEndLimit.setEnabled(not state)
 
+        if state:
+            table_model = self.c_view.ui.tableView.model()
+            begin_limit, end_limit = table_model.limits
+
+            self.c_view.ui.spinBoxBeginLimit.setValue(begin_limit)
+            self.c_view.ui.spinBoxEndLimit.setValue(end_limit)
+
     def update_table_view(self, row_offset: int, row_count: int):
         """
         Обновление таблицы с данными
@@ -31,6 +38,13 @@ class MainController:
 
         table_model = self.c_view.ui.tableView.model()
         table_model.update_properties(row_offset, row_count)
+
+        # Выводим общее количество записей
+        # Нужно ли это делать при каждом обновлении отображения или достаточно одного раза? - хз
+        self.c_view.ui.lineEditRowTotal.setText(str(table_model.row_total))
+
+        # Обновляем границы, при условии, что прожат полного корпуса
+        self.no_limit_change_state(self.c_view.ui.checkBoxNoLimit.checkState())
 
         self.c_view.ui.statusbar.showMessage(f'Offset: {row_offset}\tCount: {row_count}')
 

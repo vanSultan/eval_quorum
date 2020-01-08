@@ -53,3 +53,11 @@ class TableModel(QAbstractTableModel):
         self.endResetModel()
 
         # self.layoutChanged.emit()
+
+    @property
+    def row_total(self):
+        return self._storage.get_total_count()
+
+    @property
+    def limits(self):
+        return self._storage.get_limits()

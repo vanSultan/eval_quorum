@@ -15,11 +15,29 @@ class TableStorage:
         request = f"""
             select id_vol_span, volunteer_id, section_id, span_id 
             from volunteer_span inner join span s on volunteer_span.span_id = s.id_span
-            offset {offset} limit {count};
+            offset {offset} limit {count}
         """
         self._cursor.execute(request)
 
         return self._cursor.fetchall()
+
+    def get_total_count(self):
+        request = """
+            select count(id_vol_span) 
+            from volunteer_span
+        """
+        self._cursor.execute(request)
+
+        return self._cursor.fetchone()[0]
+
+    def get_limits(self):
+        request = """
+            select min(id_vol_span), max(id_vol_span)
+            from volunteer_span
+        """
+        self._cursor.execute(request)
+
+        return self._cursor.fetchone()
 
     def __del__(self):
         self._cursor.close()
