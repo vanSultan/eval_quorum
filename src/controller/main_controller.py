@@ -8,12 +8,10 @@ class MainController:
         self.c_view = MainView(self)
         self.c_view.show()
 
-    def update_limits(self, state: int, begin_index: int = None, end_index: int = None):
+    def change_state_no_limits(self, state: int):
         """
-        Обновление пределов корпуса
+        Смена состояния флага "весь корпус или нет"
         :param state: Состояние флага выбора всего корпуса
-        :param begin_index: начальный индекс выбранных границ
-        :param end_index: конечный индекс выбранных границ
         :return: None
         """
         # 0 - Qt::Unchecked, 2 - Qt::Checked
@@ -25,11 +23,45 @@ class MainController:
 
         table_model = self.c_view.ui.tableView.model()
 
-        begin_limit = end_limit = 0
-
         if state:  # Если флаг установлен
             begin_limit, end_limit = table_model.limits
-        elif begin_index and end_index:  # Если флаг не установлен и в таблицы выбраны пределы
+
+            self.c_view.ui.spinBoxBeginLimit.setValue(begin_limit)
+            self.c_view.ui.spinBoxEndLimit.setValue(end_limit)
+
+    def change_state_fixed_limit(self, state: int):
+        state = False if state == 0 else True
+
+        self.c_view.ui.checkBoxNoLimit.setEnabled(not state)
+        if not self.c_view.ui.checkBoxNoLimit.checkState():
+            self.c_view.ui.spinBoxBeginLimit.setEnabled(not state)
+            self.c_view.ui.spinBoxEndLimit.setEnabled(not state)
+        else:
+            self.change_state_no_limits(self.c_view.ui.checkBoxNoLimit.checkState())
+
+    def change_state_fixed_section(self, state: int):
+        state = False if state == 0 else True
+
+        self.c_view.ui.spinBoxSection.setEnabled(not state)
+
+    def change_state_fixed_volunteer(self, state: int):
+        state = False if state == 0 else True
+
+        self.c_view.ui.spinBoxVolunteer.setEnabled(not state)
+
+    def click_table(self, begin_index: int, end_index: int = None):
+        """
+        Контроллер нажатия на таблицу, обрабатывает заполнение полей интерфейса
+        :param begin_index: начальный индекс выделенных строк
+        :param end_index: конечный индекс выделенных строк(если нет, то -1)
+        :return: None
+        """
+        # Контроллер перегружен - знаю.
+        table_model = self.c_view.ui.tableView.model()
+
+        # Обработка выбора границ
+        state = False if self.c_view.ui.checkBoxFixedLimit.checkState() == 0 else True
+        if not state:
             begin_limit = int(table_model.data(table_model.index(begin_index, 0), Qt.DisplayRole))
             if end_index == -1:
                 end_limit = self.c_view.ui.spinBoxEndLimit.value()
@@ -39,9 +71,20 @@ class MainController:
             if end_limit < begin_limit:
                 end_limit = begin_limit
 
-        if state or begin_index and end_index:
             self.c_view.ui.spinBoxBeginLimit.setValue(begin_limit)
             self.c_view.ui.spinBoxEndLimit.setValue(end_limit)
+
+        # Обработка выбора абзаца
+        state = False if self.c_view.ui.checkBoxFixedSection.checkState() == 0 else True
+        if not state:
+            section_id = int(table_model.data(table_model.index(begin_index, 2), Qt.DisplayRole))
+            self.c_view.ui.spinBoxSection.setValue(section_id)
+
+        # Обработка выбора волонтера
+        state = False if self.c_view.ui.checkBoxFixedVolunteer.checkState() == 0 else True
+        if not state:
+            volunteer_id = int(table_model.data(table_model.index(begin_index, 1), Qt.DisplayRole))
+            self.c_view.ui.spinBoxVolunteer.setValue(volunteer_id)
 
     def update_table_view(self, row_offset: int, row_count: int):
         """
@@ -61,7 +104,7 @@ class MainController:
         self.c_view.ui.lineEditRowTotal.setText(str(table_model.row_total))
 
         # Обновляем границы, при условии, что прожат полного корпуса
-        self.update_limits(self.c_view.ui.checkBoxNoLimit.checkState())
+        self.change_state_no_limits(self.c_view.ui.checkBoxNoLimit.checkState())
 
         self.c_view.ui.statusbar.showMessage(f'Offset: {row_offset}\tCount: {row_count}')
 

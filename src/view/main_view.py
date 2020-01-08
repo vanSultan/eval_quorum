@@ -15,7 +15,10 @@ class MainView(QMainWindow):
         self.v_controller = controller
 
         # Привязка событий к функциям
-        self.ui.checkBoxNoLimit.stateChanged.connect(self.v_controller.update_limits)
+        self.ui.checkBoxNoLimit.stateChanged.connect(self.v_controller.change_state_no_limits)
+        self.ui.checkBoxFixedLimit.stateChanged.connect(self.v_controller.change_state_fixed_limit)
+        self.ui.checkBoxFixedSection.stateChanged.connect(self.v_controller.change_state_fixed_section)
+        self.ui.checkBoxFixedVolunteer.stateChanged.connect(self.v_controller.change_state_fixed_volunteer)
         self.ui.pushButtonUpdateView.clicked.connect(self.click_update_table_view)
         self.ui.pushButtonEvalSection.clicked.connect(self.click_eval_section)
         self.ui.pushButtonEvalVolunteer.clicked.connect(self.click_eval_volunteer)
@@ -69,4 +72,4 @@ class MainView(QMainWindow):
         else:
             end_index = selected[-1].row()
 
-        self.v_controller.update_limits(self.ui.checkBoxNoLimit.checkState(), begin_index, end_index)
+        self.v_controller.click_table(begin_index, end_index)
