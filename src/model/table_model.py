@@ -2,13 +2,16 @@ import typing
 
 from PyQt5.QtCore import QAbstractTableModel, QModelIndex, Qt
 
+from table_storage import TableStorage
+
 
 class TableModel(QAbstractTableModel):
-    def __init__(self, row_offset=0, row_count=50, table_data=None):
+    def __init__(self, row_offset: int = 0, row_count: int = 50, storage: TableStorage = None, table_data: list = None):
         super().__init__()
         self.table_data = table_data if table_data else []
         self._row_offset = row_offset
         self._row_count = row_count
+        self._storage = storage if storage else TableStorage(self._row_offset, self._row_count)
 
     def rowCount(self, parent: QModelIndex = ...) -> int:
         return len(self.table_data)
@@ -42,12 +45,11 @@ class TableModel(QAbstractTableModel):
         return name
 
     def update_properties(self, new_offset: int, new_count: int):
-        self._row_offset = new_offset
-        self._row_count = new_count
+        self._storage.row_offset = self._row_offset = new_offset
+        self._storage.row_count = self._row_count = new_count
 
-        # TODO доастать данные из базы
         self.beginResetModel()
-        # self.table_data = new_data
+        self.table_data = self._storage.get_table()
         self.endResetModel()
 
         # self.layoutChanged.emit()

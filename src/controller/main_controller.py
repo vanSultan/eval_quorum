@@ -29,7 +29,8 @@ class MainController:
         # Переключаемся на вкладку с таблицей
         self.c_view.ui.tabWidget.setCurrentIndex(0)
 
-        # TODO достать данные из модели
+        table_model = self.c_view.ui.tableView.model()
+        table_model.update_properties(row_offset, row_count)
 
         self.c_view.ui.statusbar.showMessage(f'Offset: {row_offset}\tCount: {row_count}')
 
