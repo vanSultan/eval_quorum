@@ -8,7 +8,7 @@ class MainController:
         self.c_view = MainView(self)
         self.c_view.show()
 
-    def all_period_change_state(self, state: int):
+    def no_limit_change_state(self, state: int):
         """
         Обработка установки/сброса флага выбора всего периода
         :param state: Состояние флага
@@ -35,12 +35,12 @@ class MainController:
 
         self.c_view.ui.statusbar.showMessage(f'Offset: {row_offset}\tCount: {row_count}')
 
-    def eval_section(self, id_section: int, begin_period: datetime, end_period: datetime):
+    def eval_section(self, id_section: int, begin_limit: int, end_limit: int):
         """
         Оценка абзаца
         :param id_section: id абзаца
-        :param begin_period: начала периода оценки
-        :param end_period: конец периода оценки
+        :param begin_limit: начало границы
+        :param end_limit: конец границы
         :return: None
         """
         # Переключаемся на вкладку с диаграммой
@@ -49,14 +49,14 @@ class MainController:
         # TODO попросить у модели оценку
         # TODO отобразить оценку
 
-        self.c_view.ui.statusbar.showMessage(f'IdSection: {id_section}\tBegin: {begin_period}\tEnd: {end_period}')
+        self.c_view.ui.statusbar.showMessage(f'IdSection: {id_section}\tBegin: {begin_limit}\tEnd: {end_limit}')
 
-    def eval_volunteer(self, id_volunteer: int, begin_period: datetime, end_period: datetime):
+    def eval_volunteer(self, id_volunteer: int, begin_limit: int, end_limit: int):
         """
         Оценка волонтера
         :param id_volunteer: id абзаца
-        :param begin_period: начала периода оценки
-        :param end_period: конец периода оценки
+        :param begin_limit: начало границы
+        :param end_limit: конец границы
         :return: None
         """
         # Переключаемся на вкладку с диаграммой
@@ -65,13 +65,13 @@ class MainController:
         # TODO попросить у модели оценку
         # TODO отобразить оценку
 
-        self.c_view.ui.statusbar.showMessage(f'IdVolunteer: {id_volunteer}\tBegin: {begin_period}\tEnd: {end_period}')
+        self.c_view.ui.statusbar.showMessage(f'IdVolunteer: {id_volunteer}\tBegin: {begin_limit}\tEnd: {end_limit}')
 
-    def eval_frame(self, begin_period: datetime, end_period: datetime):
+    def eval_frame(self, begin_limit: int, end_limit: int):
         """
         Оценка корпуса
-        :param begin_period: начала периода оценки
-        :param end_period: конец периода оценки
+        :param begin_limit: начало границы
+        :param end_limit: конец границы
         :return: None
         """
         # Переключаемся на вкладку с диаграммой
@@ -80,4 +80,4 @@ class MainController:
         # TODO попросить у модели оценку
         # TODO отобразить оценку
 
-        self.c_view.ui.statusbar.showMessage(f'Begin: {begin_period}\tEnd: {end_period}')
+        self.c_view.ui.statusbar.showMessage(f'Begin: {begin_limit}\tEnd: {end_limit}')

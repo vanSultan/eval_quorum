@@ -15,7 +15,7 @@ class MainView(QMainWindow):
         self.v_controller = controller
 
         # Привязка событий к функциям
-        self.ui.checkBoxAllPeriod.stateChanged.connect(self.v_controller.all_period_change_state)
+        self.ui.checkBoxNoLimit.stateChanged.connect(self.v_controller.no_limit_change_state)
         self.ui.pushButtonUpdateView.clicked.connect(self.click_update_table_view)
         self.ui.pushButtonEvalSection.clicked.connect(self.click_eval_section)
         self.ui.pushButtonEvalVolunteer.clicked.connect(self.click_eval_volunteer)
@@ -35,21 +35,21 @@ class MainView(QMainWindow):
         self.v_controller.update_table_view(row_offset, row_count)
 
     def click_eval_section(self):
-        begin_period = self.ui.dateTimeBeginPeriod.dateTime().toPyDateTime()
-        end_period = self.ui.dateTimeEndPeriod.dateTime().toPyDateTime()
+        begin_limit = int(self.ui.spinBoxBeginLimit.text())
+        end_limit = int(self.ui.spinBoxEndLimit.text())
         id_section = int(self.ui.spinBoxSection.text())
 
-        self.v_controller.eval_section(id_section, begin_period, end_period)
+        self.v_controller.eval_section(id_section, begin_limit, end_limit)
 
     def click_eval_volunteer(self):
-        begin_period = self.ui.dateTimeBeginPeriod.dateTime().toPyDateTime()
-        end_period = self.ui.dateTimeEndPeriod.dateTime().toPyDateTime()
+        begin_limit = int(self.ui.spinBoxBeginLimit.text())
+        end_limit = int(self.ui.spinBoxEndLimit.text())
         id_volunteer = int(self.ui.spinBoxVolunteer.text())
 
-        self.v_controller.eval_volunteer(id_volunteer, begin_period, end_period)
+        self.v_controller.eval_volunteer(id_volunteer, begin_limit, end_limit)
 
     def click_eval_frame(self):
-        begin_period = self.ui.dateTimeBeginPeriod.dateTime().toPyDateTime()
-        end_period = self.ui.dateTimeEndPeriod.dateTime().toPyDateTime()
+        begin_limit = int(self.ui.spinBoxBeginLimit.text())
+        end_limit = int(self.ui.spinBoxEndLimit.text())
 
-        self.v_controller.eval_frame(begin_period, end_period)
+        self.v_controller.eval_frame(begin_limit, end_limit)

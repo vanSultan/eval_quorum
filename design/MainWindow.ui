@@ -114,22 +114,22 @@
         </property>
         <layout class="QVBoxLayout" name="vLayoutEvaluation">
          <item>
-          <widget class="QGroupBox" name="groupBoxPeriod">
+          <widget class="QGroupBox" name="groupBoxLimits">
            <property name="title">
             <string>Выбор периода оценки:</string>
            </property>
            <layout class="QVBoxLayout" name="vLayoutPeriod">
             <item>
-             <layout class="QHBoxLayout" name="hLayoutBeginPeriod">
+             <layout class="QHBoxLayout" name="hLayoutBeginLimit" stretch="5,3">
               <item>
-               <widget class="QLabel" name="labelBeginPeriod">
+               <widget class="QLabel" name="labelBeginLimit">
                 <property name="text">
                  <string>Начало:</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QDateTimeEdit" name="dateTimeBeginPeriod">
+               <widget class="QSpinBox" name="spinBoxBeginLimit">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
@@ -138,16 +138,16 @@
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="hLayoutEndPeriod">
+             <layout class="QHBoxLayout" name="hLayoutEndLimit" stretch="5,3">
               <item>
-               <widget class="QLabel" name="labelEndPeriod">
+               <widget class="QLabel" name="labelEndLimit">
                 <property name="text">
                  <string>Конец:</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QDateTimeEdit" name="dateTimeEndPeriod">
+               <widget class="QSpinBox" name="spinBoxEndLimit">
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
@@ -156,7 +156,7 @@
              </layout>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBoxAllPeriod">
+             <widget class="QCheckBox" name="checkBoxNoLimit">
               <property name="text">
                <string>Выбрать весь период</string>
               </property>
