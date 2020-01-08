@@ -179,6 +179,13 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxFixedLimit">
+              <property name="text">
+               <string>Зафиксировать</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </item>
@@ -189,7 +196,7 @@
            </property>
            <layout class="QVBoxLayout" name="vLayoutSection">
             <item>
-             <layout class="QHBoxLayout" name="hLayoutSection" stretch="5,3">
+             <layout class="QHBoxLayout" name="hLayoutSection" stretch="5,3,0">
               <item>
                <widget class="QLabel" name="labelSection">
                 <property name="text">
@@ -199,8 +206,21 @@
               </item>
               <item>
                <widget class="QSpinBox" name="spinBoxSection">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="maximum">
                  <number>999999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxFixedSection">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -223,7 +243,7 @@
            </property>
            <layout class="QVBoxLayout" name="vLayoutVolunteer">
             <item>
-             <layout class="QHBoxLayout" name="hLayoutVolunteer" stretch="5,3">
+             <layout class="QHBoxLayout" name="hLayoutVolunteer" stretch="5,3,0">
               <item>
                <widget class="QLabel" name="labelVolunteer">
                 <property name="text">
@@ -233,8 +253,21 @@
               </item>
               <item>
                <widget class="QSpinBox" name="spinBoxVolunteer">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="maximum">
                  <number>999999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxFixedVolunteer">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
