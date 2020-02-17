@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
 
 from eval_plot_view import EvalPlot
-from table_model import TableModel
 from ui_main_widget import Ui_MainWindow
 
 
@@ -25,13 +24,11 @@ class MainView(QMainWindow):
         self.ui.pushButtonEvalFrame.clicked.connect(self.click_eval_frame)
         self.ui.tableView.clicked.connect(self.click_table_view)
 
-        # Привязка отображения таблицы к ее модели
-        self.ui.tableView.setModel(TableModel(0, 0))
         self.ui.tableView.horizontalHeader().setSectionResizeMode(1)  # Таблица заполняет все пространство
 
         # Инициализация диграммы для оценки
-        self.evaPlotView = EvalPlot(parent=self.ui.tabEvalPlot)
-        self.ui.vLayoutEvalPlot.addWidget(self.evaPlotView)
+        self.evalPlotView = EvalPlot(parent=self.ui.tabEvalPlot)
+        self.ui.vLayoutEvalPlot.addWidget(self.evalPlotView)
 
         # Инициализация некоторых параметров
         self.ui.spinBoxRowCount.setValue(50)
@@ -72,4 +69,5 @@ class MainView(QMainWindow):
         else:
             end_index = selected[-1].row()
 
-        self.v_controller.click_table(begin_index, end_index)
+        if not self.ui.checkBoxNoLimit.isChecked() and not self.ui.checkBoxFixedLimit.isChecked():
+            self.v_controller.click_table(begin_index, end_index)

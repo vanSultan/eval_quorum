@@ -1,11 +1,24 @@
 from PyQt5.QtCore import Qt
 
+from eval_model import EvalFrameModelSql, EvalFrameModelPandas, EvalVolunteerModelPandas, EvalSectionModelPandas, \
+    EvalVolunteerModelSql, EvalSectionModelSql
 from main_view import MainView
+from table_model import TableModelSql, TableModelPandas
 
 
 class MainController:
-    def __init__(self):
+    def __init__(self, data_source: bool = False):
+        """
+        :param data_source: if True - из бд, else - из файла
+        """
+        self._data_source = data_source
         self.c_view = MainView(self)
+
+        # Привязка отображения таблицы к ее модели
+        self.c_view.ui.tableView.setModel(TableModelSql() if self._data_source else TableModelPandas())
+
+        self.animation = None
+
         self.c_view.show()
 
     def change_state_no_limits(self, state: int):
@@ -118,9 +131,13 @@ class MainController:
         """
         # Переключаемся на вкладку с диаграммой
         self.c_view.ui.tabWidget.setCurrentIndex(1)
+        self.c_view.ui.tabWidget.repaint()
+        self.c_view.ui.tabEvalPlot.repaint()
 
-        # TODO попросить у модели оценку
-        # TODO отобразить оценку
+        if self._data_source:
+            self.c_view.evalPlotView.model = EvalSectionModelSql(id_section, begin_limit, end_limit)
+        else:
+            self.c_view.evalPlotView.model = EvalSectionModelPandas(id_section, begin_limit, end_limit)
 
         self.c_view.ui.statusbar.showMessage(f'IdSection: {id_section}\tBegin: {begin_limit}\tEnd: {end_limit}')
 
@@ -134,9 +151,13 @@ class MainController:
         """
         # Переключаемся на вкладку с диаграммой
         self.c_view.ui.tabWidget.setCurrentIndex(1)
+        self.c_view.ui.tabWidget.repaint()
+        self.c_view.ui.tabEvalPlot.repaint()
 
-        # TODO попросить у модели оценку
-        # TODO отобразить оценку
+        if self._data_source:
+            self.c_view.evalPlotView.model = EvalVolunteerModelSql(id_volunteer, begin_limit, end_limit)
+        else:
+            self.c_view.evalPlotView.model = EvalVolunteerModelPandas(id_volunteer, begin_limit, end_limit)
 
         self.c_view.ui.statusbar.showMessage(f'IdVolunteer: {id_volunteer}\tBegin: {begin_limit}\tEnd: {end_limit}')
 
@@ -149,15 +170,19 @@ class MainController:
         """
         # Переключаемся на вкладку с диаграммой
         self.c_view.ui.tabWidget.setCurrentIndex(1)
+        self.c_view.ui.tabWidget.repaint()
+        self.c_view.ui.tabEvalPlot.repaint()
 
-        # TODO попросить у модели оценку
-        # TODO отобразить оценку
+        if self._data_source:
+            self.c_view.evalPlotView.model = EvalFrameModelSql(begin_limit, end_limit)
+        else:
+            self.c_view.evalPlotView.model = EvalFrameModelPandas(begin_limit, end_limit)
 
         self.c_view.ui.statusbar.showMessage(f'Begin: {begin_limit}\tEnd: {end_limit}')
 
     def load_data_from_csv(self, filename: str = 'spans.csv', sep: str = ','):
-        from database import Database
-        cursor = Database().connect()
+        from database import DatabasePostgres
+        cursor = DatabasePostgres().connect()
 
         with open(filename) as f_src:
             records = f_src.readlines()[1:]  # Первая строка - заголовок
@@ -261,4 +286,4 @@ class MainController:
                 self.c_view.ui.statusbar.repaint()
 
         cursor.close()
-        Database().connection.commit()
+        DatabasePostgres().connection.commit()
