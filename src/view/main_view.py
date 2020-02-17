@@ -69,5 +69,5 @@ class MainView(QMainWindow):
         else:
             end_index = selected[-1].row()
 
-        if not self.ui.checkBoxNoLimit.isChecked() and not self.ui.checkBoxFixedLimit.isChecked():
+        if not self.ui.checkBoxFixedLimit.isChecked():
             self.v_controller.click_table(begin_index, end_index)
