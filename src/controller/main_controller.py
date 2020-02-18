@@ -181,7 +181,7 @@ class MainController:
         self.c_view.ui.statusbar.showMessage(f'Begin: {begin_limit}\tEnd: {end_limit}')
 
     def load_data_from_csv(self, filename: str = 'spans.csv', sep: str = ','):
-        from database import DatabasePostgres
+        from utility.database import DatabasePostgres
         cursor = DatabasePostgres().connect()
 
         with open(filename) as f_src:
