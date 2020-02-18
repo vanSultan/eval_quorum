@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="hLayoutCentral" stretch="5,2">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabTable">
+       <attribute name="title">
+        <string>Таблица</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="vLayoutTable">
+        <item>
+         <widget class="QTableView" name="tableView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabEvalPlot">
+       <attribute name="title">
+        <string>Оценка</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="vLayoutEvalPlot"/>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="vLayoutSettings" stretch="2,5">
+      <item>
+       <widget class="QGroupBox" name="groupBoxView">
+        <property name="title">
+         <string>Настройка отображения данных:</string>
+        </property>
+        <layout class="QVBoxLayout" name="vLayoutView">
+         <item>
+          <layout class="QHBoxLayout" name="hLayoutRowOffset" stretch="5,3">
+           <item>
+            <widget class="QLabel" name="labelRowOffset">
+             <property name="text">
+              <string>Смещение:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBoxRowOffset">
+             <property name="maximum">
+              <number>999999</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="hLayoutRowCount" stretch="5,3">
+           <item>
+            <widget class="QLabel" name="labelRowCount">
+             <property name="text">
+              <string>Количество строк:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBoxRowCount">
+             <property name="maximum">
+              <number>999999</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="hLayoutRowTotal" stretch="5,3">
+           <item>
+            <widget class="QLabel" name="labelRowTotal">
+             <property name="text">
+              <string>Строк всего:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditRowTotal">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonUpdateView">
+           <property name="text">
+            <string>Обновить таблицу</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBoxEvaluation">
+        <property name="title">
+         <string>Оценка согласованности:</string>
+        </property>
+        <layout class="QVBoxLayout" name="vLayoutEvaluation">
+         <item>
+          <widget class="QGroupBox" name="groupBoxLimits">
+           <property name="title">
+            <string>Выбор периода оценки:</string>
+           </property>
+           <layout class="QVBoxLayout" name="vLayoutPeriod">
+            <item>
+             <layout class="QHBoxLayout" name="hLayoutBeginLimit" stretch="5,3">
+              <item>
+               <widget class="QLabel" name="labelBeginLimit">
+                <property name="text">
+                 <string>Начало:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxBeginLimit">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="hLayoutEndLimit" stretch="5,3">
+              <item>
+               <widget class="QLabel" name="labelEndLimit">
+                <property name="text">
+                 <string>Конец:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxEndLimit">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxNoLimit">
+              <property name="text">
+               <string>Выбрать весь период</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxFixedLimit">
+              <property name="text">
+               <string>Зафиксировать</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBoxSection">
+           <property name="title">
+            <string>Оценка абзаца:</string>
+           </property>
+           <layout class="QVBoxLayout" name="vLayoutSection">
+            <item>
+             <layout class="QHBoxLayout" name="hLayoutSection" stretch="5,3,0">
+              <item>
+               <widget class="QLabel" name="labelSection">
+                <property name="text">
+                 <string>ID абазаца:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxSection">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxFixedSection">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonEvalSection">
+              <property name="text">
+               <string>Оценить абзац</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBoxVolunteer">
+           <property name="title">
+            <string>Оценка волонтера:</string>
+           </property>
+           <layout class="QVBoxLayout" name="vLayoutVolunteer">
+            <item>
+             <layout class="QHBoxLayout" name="hLayoutVolunteer" stretch="5,3,0">
+              <item>
+               <widget class="QLabel" name="labelVolunteer">
+                <property name="text">
+                 <string>ID волонтера:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxVolunteer">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxFixedVolunteer">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonEvalVolunteer">
+              <property name="text">
+               <string>Оценить волонтера</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonEvalFrame">
+           <property name="text">
+            <string>Оценить корпус</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
