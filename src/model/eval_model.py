@@ -162,11 +162,10 @@ class EvalVolunteerModelSql(EvalModelSql):
             select section_id, span_id, volunteer_id from volunteer_span
             inner join span s on volunteer_span.span_id = s.id_span
             where id_vol_span between {self._begin_limit} and {self._end_limit}
-            and volunteer_id = {self._id_volunteer}
+            and span_id in (select span_id from volunteer_span where volunteer_id = {self._id_volunteer})
         """
-        self._cursor.execute(request)
 
-        return self._cursor.fetchone()[0]
+        return request
 
     def get_total(self):
         request = f"""
@@ -211,9 +210,8 @@ class EvalSectionModelSql(EvalModelSql):
             where id_vol_span between {self._begin_limit} and {self._end_limit}
             and section_id = {self._id_section}
         """
-        self._cursor.execute(request)
 
-        return self._cursor.fetchone()[0]
+        return request
 
     def get_total(self):
         request = f"""
