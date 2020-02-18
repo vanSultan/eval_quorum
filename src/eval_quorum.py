@@ -5,8 +5,8 @@ import sys
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication
 
-from database import DatabasePostgres, DatabaseCsvFile
-from main_controller import MainController
+from utility.database import DatabasePostgres, DatabaseCsvFile
+from controller.main_controller import MainController
 
 
 def get_args():
@@ -20,10 +20,9 @@ def get_args():
 
 def main():
     args = get_args()
-    data_source = None
 
     if not args.connection_string and not args.file_path:
-        print('Не указан источник данных')
+        raise ValueError('Не указан источник данных')
     elif args.connection_string:
         DatabasePostgres.connection_string = args.connection_string
         data_source = True

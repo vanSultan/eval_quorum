@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 
-from eval_plot_view import EvalPlot
-from ui_main_widget import Ui_MainWindow
+from .eval_plot_view import EvalPlot
+from .ui_main_widget import Ui_MainWindow
 
 
 class MainView(QMainWindow):

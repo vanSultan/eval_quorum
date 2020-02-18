@@ -1,10 +1,9 @@
-import numpy as np
 from PyQt5 import QtWidgets
 from matplotlib import animation
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-from eval_model import EvalModel
+from model.eval_model import EvalModel
 
 
 class EvalPlot(FigureCanvas):

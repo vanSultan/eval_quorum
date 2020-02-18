@@ -3,7 +3,7 @@ from abc import abstractmethod
 
 from PyQt5.QtCore import QAbstractTableModel, QModelIndex, Qt
 
-from database import DatabasePostgres, DatabaseCsvFile
+from utility.database import DatabasePostgres, DatabaseCsvFile
 
 
 class TableModel(QAbstractTableModel):

@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
-from database import DatabasePostgres, DatabaseCsvFile
-from entitys import Eval, Span, Section
+from utility.database import DatabasePostgres, DatabaseCsvFile
+from utility.entitys import Eval, Span, Section
 
 
 class EvalModel:
