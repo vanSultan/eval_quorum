@@ -1,12 +1,12 @@
 class Eval:
-    single = 1  # Одиночное мнение
+    single = 1  # Установленное меньшинство
     half = 2  # Мнения разделилсь
     p_quorum = 3  # Возможный кворум
     quorum = 4  # Кворум
     alone = 0  # Не имеет значения
 
     common_stat = {
-        single: {'label': 'Одиночное мнение', 'count': 0},
+        single: {'label': 'Установленное меньшинство', 'count': 0},
         half: {'label': 'Мнения разделились', 'count': 0},
         p_quorum: {'label': 'Возможный кворум', 'count': 0},
         quorum: {'label': 'Кворум', 'count': 0}
@@ -71,14 +71,14 @@ class Span:
                 self.eval.state = Eval.p_quorum  # Возможный кворум
         elif vol_in_sec == 3:
             if vol_in_span == 1:
-                self.eval.state = Eval.single  # Одиночное мнение
+                self.eval.state = Eval.single  # Установленное меньшинство
             elif vol_in_span == 2:
                 self.eval.state = Eval.p_quorum  # Возможный кворум
             elif vol_in_span == 3:
                 self.eval.state = Eval.quorum  # Кворум
         elif vol_in_sec == 4 or vol_in_sec > 4 and not Eval.flag_ignore:
             if vol_in_span == 1:
-                self.eval.state = Eval.single  # Одиночное мнение
+                self.eval.state = Eval.single  # Установленное меньшинство
             elif vol_in_span == 2:
                 self.eval.state = Eval.half  # Мнения разделились
             elif vol_in_span == 3:

@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 
-from model.eval_model import EvalFrameModelSql, EvalFrameModelPandas, EvalVolunteerModelPandas, EvalSectionModelPandas, \
-    EvalVolunteerModelSql, EvalSectionModelSql
+from model.eval_model import EvalFrameModelSql, EvalFrameModelPandas, EvalVolunteerModelPandas, \
+    EvalSectionModelPandas, EvalVolunteerModelSql, EvalSectionModelSql
 from view.main_view import MainView
 from model.table_model import TableModelSql, TableModelPandas
 

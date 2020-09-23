@@ -34,13 +34,13 @@
 * Взаимодействие с базой данных:
     - Реализована возможность получать информацию из базы данных *PostgresSql*.
     - Схема: ![scheme.jpg](img/scheme.jpg)
-    - Пример запуска: *python3 [src/eval_quorum.py](src/eval_quorum.py) -c 
+    - Пример запуска: *python3 [src/eval_quorum.py](src/eval_quorum_old.py) -c 
     postgresql://eval_quorum:eval_quorum@192.168.10.36/inter_annotation_db*
 * Дамп данных в формате *.csv*:
     - В основе анализа лежит демонстрационный набор данных.
     - Заголовок данного файла: *par_id,user_id,entity_id,tag_name,start_token,length*.
     - Для обработки данного формата используется модуль *pandas*.
-    - Пример запуска: *python3 [src/eval_quorum.py](src/eval_quorum.py) -f spans.csv*.
+    - Пример запуска: *python3 [src/eval_quorum.py](src/eval_quorum_old.py) -f spans.csv*.
     
 ---
 
